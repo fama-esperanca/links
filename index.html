@@ -11,16 +11,21 @@
 
   <style>
     :root {
-      --bg-1: #ff7a00;
-      --bg-2: #ff9f1a;
-      --bg-3: #ff5e00;
-      --card: rgba(255, 255, 255, 0.12);
-      --card-border: rgba(255, 255, 255, 0.18);
-      --text: #ffffff;
-      --muted: rgba(255, 255, 255, 0.85);
-      --shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
-      --radius-xl: 28px;
-      --radius-lg: 18px;
+      --bg-1: #fff7ef;
+      --bg-2: #ffe8d2;
+      --bg-3: #ffd6b0;
+      --glow-1: rgba(255, 169, 77, 0.22);
+      --glow-2: rgba(255, 122, 69, 0.16);
+      --card: rgba(255, 255, 255, 0.7);
+      --card-border: rgba(255, 255, 255, 0.75);
+      --text: #2d1d12;
+      --muted: #6f5848;
+      --accent: #f28c38;
+      --accent-soft: #ffb36b;
+      --shadow: 0 24px 60px rgba(147, 86, 34, 0.14);
+      --shadow-soft: 0 12px 30px rgba(147, 86, 34, 0.08);
+      --radius-xl: 32px;
+      --radius-lg: 22px;
       --transition: 0.28s ease;
     }
 
@@ -39,13 +44,13 @@
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(255, 221, 89, 0.35), transparent 28%),
-        radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.12), transparent 24%),
-        linear-gradient(135deg, var(--bg-1), var(--bg-2) 45%, var(--bg-3));
+        radial-gradient(circle at 10% 10%, var(--glow-1), transparent 24%),
+        radial-gradient(circle at 90% 85%, var(--glow-2), transparent 28%),
+        linear-gradient(180deg, var(--bg-1), var(--bg-2) 45%, var(--bg-3));
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px;
+      padding: 28px 18px;
       overflow-x: hidden;
       position: relative;
     }
@@ -54,92 +59,121 @@
     body::after {
       content: "";
       position: fixed;
-      inset: auto;
-      width: 320px;
-      height: 320px;
+      width: 380px;
+      height: 380px;
       border-radius: 50%;
-      filter: blur(50px);
-      opacity: 0.18;
+      filter: blur(70px);
+      opacity: 0.6;
       pointer-events: none;
       z-index: 0;
     }
 
     body::before {
-      top: -60px;
-      left: -80px;
-      background: #fff3cf;
+      top: -120px;
+      left: -100px;
+      background: rgba(255, 201, 145, 0.45);
     }
 
     body::after {
-      right: -80px;
-      bottom: -70px;
-      background: #ffcf7d;
+      right: -120px;
+      bottom: -120px;
+      background: rgba(255, 164, 102, 0.28);
     }
 
     .page {
       width: 100%;
-      max-width: 480px;
+      max-width: 470px;
       position: relative;
       z-index: 1;
       animation: fadeUp 0.8s ease both;
     }
 
     .card {
+      position: relative;
       background: var(--card);
       border: 1px solid var(--card-border);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
       border-radius: var(--radius-xl);
-      padding: 32px 22px 24px;
+      padding: 30px 20px 22px;
       box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.3), transparent 25%, transparent 75%, rgba(255,255,255,0.18));
+      pointer-events: none;
     }
 
     .header {
       text-align: center;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
     }
 
     .logo-wrap {
-      width: 120px;
-      height: 120px;
-      margin: 0 auto 18px;
-      border-radius: 50%;
+      width: 118px;
+      height: 118px;
+      margin: 0 auto 16px;
       padding: 6px;
-      background: rgba(255, 255, 255, 0.14);
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16);
-      animation: floatLogo 4.5s ease-in-out infinite;
+      border-radius: 50%;
+      background: linear-gradient(145deg, rgba(255,255,255,0.92), rgba(255,255,255,0.6));
+      box-shadow: 0 14px 34px rgba(190, 117, 47, 0.16);
+      border: 1px solid rgba(255,255,255,0.8);
+      animation: floatLogo 5s ease-in-out infinite;
     }
 
     .logo {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 50%;
       display: block;
-      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      color: #9a5a21;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 14px;
     }
 
     h1 {
-      font-size: 1.6rem;
-      line-height: 1.2;
+      font-size: 1.68rem;
+      line-height: 1.15;
       font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 8px;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
       text-wrap: balance;
     }
 
     .subtitle {
-      font-size: 0.97rem;
-      line-height: 1.5;
+      font-size: 0.96rem;
+      line-height: 1.55;
       color: var(--muted);
-      max-width: 320px;
+      max-width: 330px;
       margin: 0 auto;
     }
 
     .links {
       display: grid;
       gap: 14px;
+      position: relative;
+      z-index: 1;
     }
 
     .link-btn {
@@ -150,11 +184,12 @@
       gap: 14px;
       width: 100%;
       text-decoration: none;
-      color: #fff;
-      padding: 18px 18px;
+      color: var(--text);
+      padding: 17px;
       border-radius: var(--radius-lg);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      box-shadow: var(--shadow-soft);
       transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition), background var(--transition);
       overflow: hidden;
       isolation: isolate;
@@ -164,7 +199,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(120deg, rgba(255,255,255,0.18), transparent 35%, rgba(255,255,255,0.08));
+      background: linear-gradient(120deg, rgba(255,255,255,0.42), transparent 35%, rgba(255,255,255,0.18));
       opacity: 0;
       transition: opacity var(--transition);
       z-index: 0;
@@ -172,18 +207,15 @@
 
     .link-btn:hover,
     .link-btn:focus-visible {
-      transform: translateY(-3px) scale(1.01);
-      box-shadow: 0 14px 26px rgba(0, 0, 0, 0.18);
-      border-color: rgba(255, 255, 255, 0.34);
+      transform: translateY(-4px);
+      box-shadow: 0 18px 38px rgba(147, 86, 34, 0.14);
+      border-color: rgba(255, 191, 134, 0.95);
+      background: rgba(255, 255, 255, 0.94);
     }
 
     .link-btn:hover::before,
     .link-btn:focus-visible::before {
       opacity: 1;
-    }
-
-    .link-btn:active {
-      transform: translateY(-1px) scale(0.995);
     }
 
     .left,
@@ -200,15 +232,15 @@
     }
 
     .icon-box {
-      width: 48px;
-      height: 48px;
-      flex: 0 0 48px;
+      width: 50px;
+      height: 50px;
+      flex: 0 0 50px;
       display: grid;
       place-items: center;
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.14);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      font-size: 1.2rem;
+      border-radius: 16px;
+      color: #fff;
+      font-size: 1.18rem;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.25);
     }
 
     .text-group {
@@ -218,67 +250,75 @@
     .label {
       display: block;
       font-size: 1rem;
-      font-weight: 700;
-      line-height: 1.25;
+      font-weight: 800;
+      line-height: 1.2;
     }
 
     .mini {
       display: block;
-      font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.84);
-      margin-top: 4px;
+      font-size: 0.84rem;
+      color: var(--muted);
+      margin-top: 5px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
     .arrow {
-      font-size: 1rem;
-      opacity: 0.9;
-      transition: transform var(--transition);
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(255, 241, 229, 0.95);
+      color: #c46e2e;
+      font-size: 0.95rem;
+      transition: transform var(--transition), background var(--transition);
     }
 
     .link-btn:hover .arrow,
     .link-btn:focus-visible .arrow {
       transform: translateX(4px);
+      background: #fff1e5;
     }
 
-    .youtube {
-      background: linear-gradient(135deg, #ff2f2f, #ff6a00);
+    .youtube .icon-box {
+      background: linear-gradient(135deg, #ff4d67, #ff7f50);
     }
 
-    .instagram {
-      background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+    .instagram .icon-box {
+      background: linear-gradient(135deg, #9b5cff, #ff7c7c, #ffb36b);
     }
 
-    .whatsapp {
-      background: linear-gradient(135deg, #08b26f, #25d366);
+    .whatsapp .icon-box {
+      background: linear-gradient(135deg, #13c296, #29d467);
     }
 
-    .photos {
-      background: linear-gradient(135deg, #ff8c1a, #ff5c00);
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 18px;
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.92);
-      padding: 0 12px;
+    .photos .icon-box {
+      background: linear-gradient(135deg, #ff9f5a, #f48b2d);
     }
 
     .social-tip {
       text-align: center;
       margin-top: 18px;
-      margin-bottom: 6px;
       font-size: 0.84rem;
-      color: rgba(255, 255, 255, 0.85);
+      color: var(--muted);
+      position: relative;
+      z-index: 1;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 0.88rem;
+      color: #7d624f;
+      padding: 0 12px;
     }
 
     @keyframes fadeUp {
       from {
         opacity: 0;
-        transform: translateY(24px);
+        transform: translateY(26px);
       }
       to {
         opacity: 1;
@@ -287,45 +327,42 @@
     }
 
     @keyframes floatLogo {
-      0%, 100% {
-        transform: translateY(0px);
-      }
-      50% {
-        transform: translateY(-6px);
-      }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
     }
 
     @media (max-width: 520px) {
       body {
-        padding: 16px;
+        padding: 18px 14px;
       }
 
       .card {
         padding: 26px 16px 20px;
-        border-radius: 24px;
+        border-radius: 28px;
       }
 
       .logo-wrap {
-        width: 105px;
-        height: 105px;
+        width: 104px;
+        height: 104px;
       }
 
       h1 {
-        font-size: 1.35rem;
+        font-size: 1.4rem;
       }
 
       .subtitle {
-        font-size: 0.92rem;
+        font-size: 0.91rem;
       }
 
       .link-btn {
-        padding: 16px;
+        padding: 15px;
       }
 
       .icon-box {
-        width: 44px;
-        height: 44px;
-        flex-basis: 44px;
+        width: 46px;
+        height: 46px;
+        flex-basis: 46px;
+        border-radius: 15px;
       }
 
       .label {
@@ -333,7 +370,12 @@
       }
 
       .mini {
-        font-size: 0.8rem;
+        font-size: 0.79rem;
+      }
+
+      .arrow {
+        width: 34px;
+        height: 34px;
       }
     }
 
@@ -351,16 +393,17 @@
     <section class="card">
       <header class="header">
         <div class="logo-wrap">
-          <img
-            class="logo"
-            src="logo.png"
-            alt="Logo Ministério Fama Jardim Nova Esperança"
-          />
+          <img class="logo" src="logo.png" alt="Logo Ministério Fama Jardim Nova Esperança" />
         </div>
 
-        <h1>Ministério Fama Jardim Nova Esperança</h1>
+        <div class="badge">
+          <i class="fa-solid fa-sparkles"></i>
+          <span>Bem-vindo</span>
+        </div>
+
+        <h1>Ministério Fama – Jardim Nova Esperança</h1>
         <p class="subtitle">
-          Conecte-se com nossos conteúdos, redes sociais e registros dos cultos em um só lugar.
+          Acesse nossas redes, acompanhe os cultos e fique por dentro de tudo em um só lugar.
         </p>
       </header>
 
@@ -373,7 +416,7 @@
               <span class="mini">Mensagens, cultos e conteúdos em vídeo</span>
             </span>
           </span>
-          <span class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+          <span class="arrow"><i class="fa-solid fa-arrow-right"></i></span>
         </a>
 
         <a class="link-btn instagram" href="https://www.instagram.com/adfamanovaesperanca" target="_blank" rel="noopener noreferrer" aria-label="Seguir no Instagram">
@@ -381,10 +424,10 @@
             <span class="icon-box"><i class="fa-brands fa-instagram"></i></span>
             <span class="text-group">
               <span class="label">Seguir no Instagram</span>
-              <span class="mini">Novidades, agenda e publicações</span>
+              <span class="mini">Novidades, agenda e momentos especiais</span>
             </span>
           </span>
-          <span class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+          <span class="arrow"><i class="fa-solid fa-arrow-right"></i></span>
         </a>
 
         <a class="link-btn whatsapp" href="https://wa.me/5562993548082" target="_blank" rel="noopener noreferrer" aria-label="Fale Conosco no WhatsApp">
@@ -392,10 +435,10 @@
             <span class="icon-box"><i class="fa-brands fa-whatsapp"></i></span>
             <span class="text-group">
               <span class="label">Fale Conosco no WhatsApp</span>
-              <span class="mini">Entre em contato rapidamente</span>
+              <span class="mini">Entre em contato de forma rápida</span>
             </span>
           </span>
-          <span class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+          <span class="arrow"><i class="fa-solid fa-arrow-right"></i></span>
         </a>
 
         <a class="link-btn photos" href="https://drive.google.com/drive/folders/1otOqhaZOzP4B41y2xFzUHUZbJmIHWqB9" target="_blank" rel="noopener noreferrer" aria-label="Ver as Últimas Fotos do Culto">
@@ -403,19 +446,17 @@
             <span class="icon-box"><i class="fa-regular fa-image"></i></span>
             <span class="text-group">
               <span class="label">Ver as Últimas Fotos do Culto</span>
-              <span class="mini">Galeria atualizada com registros recentes</span>
+              <span class="mini">Galeria com os registros mais recentes</span>
             </span>
           </span>
-          <span class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+          <span class="arrow"><i class="fa-solid fa-arrow-right"></i></span>
         </a>
       </div>
 
-      <p class="social-tip">Escolha um canal e acesse com um toque.</p>
+      <p class="social-tip">Escolha um canal e toque para acessar.</p>
     </section>
 
-    <footer>
-      Ministério Fama – Jardim Nova Esperança
-    </footer>
+    <footer>Ministério Fama – Jardim Nova Esperança</footer>
   </main>
 
   <script>
@@ -424,14 +465,14 @@
 
       buttons.forEach((button, index) => {
         button.style.opacity = '0';
-        button.style.transform = 'translateY(18px)';
+        button.style.transform = 'translateY(14px)';
 
         requestAnimationFrame(() => {
           setTimeout(() => {
             button.style.transition = 'opacity 0.45s ease, transform 0.45s ease, box-shadow 0.28s ease, border-color 0.28s ease';
             button.style.opacity = '1';
             button.style.transform = 'translateY(0)';
-          }, 120 + index * 110);
+          }, 100 + index * 100);
         });
       });
     });
