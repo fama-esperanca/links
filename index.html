@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Página oficial de links do Ministério Fama – Jardim Nova Esperança" />
+  <title>Ministério Fama – Jardim Nova Esperança</title>
+
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg-1: #ff7a00;
+      --bg-2: #ff9f1a;
+      --bg-3: #ff5e00;
+      --card: rgba(255, 255, 255, 0.12);
+      --card-border: rgba(255, 255, 255, 0.18);
+      --text: #ffffff;
+      --muted: rgba(255, 255, 255, 0.85);
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+      --radius-xl: 28px;
+      --radius-lg: 18px;
+      --transition: 0.28s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255, 221, 89, 0.35), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.12), transparent 24%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2) 45%, var(--bg-3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: auto;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      filter: blur(50px);
+      opacity: 0.18;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::before {
+      top: -60px;
+      left: -80px;
+      background: #fff3cf;
+    }
+
+    body::after {
+      right: -80px;
+      bottom: -70px;
+      background: #ffcf7d;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 480px;
+      position: relative;
+      z-index: 1;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: var(--radius-xl);
+      padding: 32px 22px 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .logo-wrap {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      padding: 6px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16);
+      animation: floatLogo 4.5s ease-in-out infinite;
+    }
+
+    .logo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      line-height: 1.2;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      text-wrap: balance;
+    }
+
+    .subtitle {
+      font-size: 0.97rem;
+      line-height: 1.5;
+      color: var(--muted);
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    .links {
+      display: grid;
+      gap: 14px;
+    }
+
+    .link-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      width: 100%;
+      text-decoration: none;
+      color: #fff;
+      padding: 18px 18px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition), background var(--transition);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .link-btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(255,255,255,0.18), transparent 35%, rgba(255,255,255,0.08));
+      opacity: 0;
+      transition: opacity var(--transition);
+      z-index: 0;
+    }
+
+    .link-btn:hover,
+    .link-btn:focus-visible {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 14px 26px rgba(0, 0, 0, 0.18);
+      border-color: rgba(255, 255, 255, 0.34);
+    }
+
+    .link-btn:hover::before,
+    .link-btn:focus-visible::before {
+      opacity: 1;
+    }
+
+    .link-btn:active {
+      transform: translateY(-1px) scale(0.995);
+    }
+
+    .left,
+    .arrow {
+      position: relative;
+      z-index: 1;
+    }
+
+    .left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .icon-box {
+      width: 48px;
+      height: 48px;
+      flex: 0 0 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      font-size: 1.2rem;
+    }
+
+    .text-group {
+      min-width: 0;
+    }
+
+    .label {
+      display: block;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .mini {
+      display: block;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.84);
+      margin-top: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .arrow {
+      font-size: 1rem;
+      opacity: 0.9;
+      transition: transform var(--transition);
+    }
+
+    .link-btn:hover .arrow,
+    .link-btn:focus-visible .arrow {
+      transform: translateX(4px);
+    }
+
+    .youtube {
+      background: linear-gradient(135deg, #ff2f2f, #ff6a00);
+    }
+
+    .instagram {
+      background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+    }
+
+    .whatsapp {
+      background: linear-gradient(135deg, #08b26f, #25d366);
+    }
+
+    .photos {
+      background: linear-gradient(135deg, #ff8c1a, #ff5c00);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.92);
+      padding: 0 12px;
+    }
+
+    .social-tip {
+      text-align: center;
+      margin-top: 18px;
+      margin-bottom: 6px;
+      font-size: 0.84rem;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes floatLogo {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    @media (max-width: 520px) {
+      body {
+        padding: 16px;
+      }
+
+      .card {
+        padding: 26px 16px 20px;
+        border-radius: 24px;
+      }
+
+      .logo-wrap {
+        width: 105px;
+        height: 105px;
+      }
+
+      h1 {
+        font-size: 1.35rem;
+      }
+
+      .subtitle {
+        font-size: 0.92rem;
+      }
+
+      .link-btn {
+        padding: 16px;
+      }
+
+      .icon-box {
+        width: 44px;
+        height: 44px;
+        flex-basis: 44px;
+      }
+
+      .label {
+        font-size: 0.96rem;
+      }
+
+      .mini {
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="card">
+      <header class="header">
+        <div class="logo-wrap">
+          <img
+            class="logo"
+            src="logo.png"
+            alt="Logo Ministério Fama Jardim Nova Esperança"
+          />
+        </div>
+
+        <h1>Ministério Fama – Jardim Nova Esperança</h1>
+        <p class="subtitle">
+          Conecte-se com nossos conteúdos, redes sociais e registros dos cultos em um só lugar.
+        </p>
+      </header>
+
+      <div class="links" id="linksContainer">
+        <a class="link-btn youtube" href="https://www.youtube.com/@ministeriofama-jardimnovae1192" target="_blank" rel="noopener noreferrer" aria-label="Assistir no YouTube">
+          <span class="left">
+            <span class="icon-box"><i class="fa-brands fa-youtube"></i></span>
+            <span class="text-group">
+              <span class="label">Assistir no YouTube</span>
+              <span class="mini">Mensagens, cultos e conteúdos em vídeo</span>
+            </span>
+          </span>
+          <span class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+        </a>
+
+        <a class="link-btn instagram" href="https://www.instagram.com/adfamanovaesperanca" target="_blank" rel="noopener noreferrer" aria-label="Seguir no Instagram">
+          <span class="left">
+            <span class="icon-box"><i class="fa-brands fa-instagram"></i></span>
+            <span class="text-group">
+              <span class="label">Seguir no Instagram</span>
+              <span class="mini">Novidades, agenda e publicações</span>
+            </span>
+          </span>
+          <span class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+        </a>
+
+        <a class="link-btn whatsapp" href="https://wa.me/5562993548082" target="_blank" rel="noopener noreferrer" aria-label="Fale Conosco no WhatsApp">
+          <span class="left">
+            <span class="icon-box"><i class="fa-brands fa-whatsapp"></i></span>
+            <span class="text-group">
+              <span class="label">Fale Conosco no WhatsApp</span>
+              <span class="mini">Entre em contato rapidamente</span>
+            </span>
+          </span>
+          <span class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+        </a>
+
+        <a class="link-btn photos" href="https://drive.google.com/drive/folders/1otOqhaZOzP4B41y2xFzUHUZbJmIHWqB9" target="_blank" rel="noopener noreferrer" aria-label="Ver as Últimas Fotos do Culto">
+          <span class="left">
+            <span class="icon-box"><i class="fa-regular fa-image"></i></span>
+            <span class="text-group">
+              <span class="label">Ver as Últimas Fotos do Culto</span>
+              <span class="mini">Galeria atualizada com registros recentes</span>
+            </span>
+          </span>
+          <span class="arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+        </a>
+      </div>
+
+      <p class="social-tip">Escolha um canal e acesse com um toque.</p>
+    </section>
+
+    <footer>
+      Ministério Fama – Jardim Nova Esperança
+    </footer>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const buttons = document.querySelectorAll('.link-btn');
+
+      buttons.forEach((button, index) => {
+        button.style.opacity = '0';
+        button.style.transform = 'translateY(18px)';
+
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            button.style.transition = 'opacity 0.45s ease, transform 0.45s ease, box-shadow 0.28s ease, border-color 0.28s ease';
+            button.style.opacity = '1';
+            button.style.transform = 'translateY(0)';
+          }, 120 + index * 110);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
